@@ -1,0 +1,159 @@
+.navbar {
+    position:absolute;
+    width:100%;
+    background-color: black;
+}
+
+.nav.navbar-nav li a{
+    font-size: 20px;
+    color: white ;
+    font-weight: bolder;
+    font-family: cursive;
+}
+
+.navbar-nav > li{
+    padding-left:5px;
+    padding-right:15px;
+    opacity: 0.9;
+}
+
+#logo{
+    width: 25%;
+    margin-left: 10%;
+    margin-top: -2%;
+    border-radius: 0 0 25px 25px;
+}
+
+.carousel .item {
+    height: 800px;
+}
+
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 800px;
+    /*opacity: 0.8!important;*/
+}
+
+#myCarouse{
+    position:absolute;
+    width:100%;
+    top:0;
+}
+
+.jumbotron{
+    margin-top: 10%;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+.home-about h2{
+    font-family: Brush Script MT;
+    text-align: center;
+    font-size: 60px;
+}
+
+.home-about p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.img-icon{
+    width: 12%;
+    margin-left: 230px;
+}
+
+.btn-more{
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+}
+
+.home-menu{
+    width: 100%;
+    margin-top: 10%;
+    background-color: black;
+}
+
+.home-menu h3{
+    text-align: center;
+    color: #ffce33;
+    font-weight: bold;
+    /*font-family: Zapf Chancery, cursive;*/
+    font-family: "Dancing Script";
+}
+
+.home-menu h1{
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-family: Andale Mono, monospace;
+}
+
+.home-menu-items{
+    margin-top: 80px;
+}
+
+.col-sm-4 h3{
+    margin-top: 30px;
+    font-family: Papyrus;
+    color:  #ffce33;
+}
+
+.btn-menu{
+    background-color: #ff230d ;
+    margin-top: 25px;
+    font-size: 18px;
+    border-radius: 15px;
+    color: white;
+    /*font-family: Georgia;*/
+    padding: 10px 10px 10px 10px;
+}
+
+.contact-info h2{
+    text-align: center;
+    font-family: "Dancing Script";
+    color: maroon;
+    font-weight: bold;
+}
+
+.contact-info h1{
+    text-align: center;
+    font-size: 50px;
+    font-family: "Gill Sans";
+}
+
+.well{
+    border-width: 0;
+    color: gray;
+    background: transparent;
+}
+
+.well p{
+    font-size: 20px;
+}
+
+.well span{
+    right: 7px;
+    color: maroon;
+}
+
+
+.footer-copyright{
+    margin-top: 10%;
+    padding: 20px 20px;
+    background-color: black;
+    font-family: Georgia;
+}
+
+.footer-copyright p{
+    color: white;
+    font-size: 20px;
+}
