@@ -1,36 +1,10 @@
-.navbar {
-    position:absolute;
-    width:100%;
-    background-color: black;
-}
-
-.nav.navbar-nav li a{
-    font-size: 20px;
-    color: white ;
-    font-weight: bolder;
-    font-family: cursive;
-}
-
-.navbar-nav > li{
-    padding-left:5px;
-    padding-right:15px;
-    opacity: 0.9;
-}
-
-#logo{
-    width: 25%;
-    margin-left: 10%;
-    margin-top: -2%;
-    border-radius: 0 0 25px 25px;
-}
-
 .carousel .item {
     height: 800px;
 }
 
 .item img {
     position: absolute;
-    top: 0;
+    top:0;
     left: 0;
     min-height: 800px;
     /*opacity: 0.8!important;*/
@@ -64,8 +38,9 @@
 }
 
 .img-icon{
-    width: 12%;
-    margin-left: 230px;
+    width: 18%;
+    margin: auto;
+    display: block;
 }
 
 .btn-more{
@@ -146,14 +121,3 @@
 }
 
 
-.footer-copyright{
-    margin-top: 10%;
-    padding: 20px 20px;
-    background-color: black;
-    font-family: Georgia;
-}
-
-.footer-copyright p{
-    color: white;
-    font-size: 20px;
-}

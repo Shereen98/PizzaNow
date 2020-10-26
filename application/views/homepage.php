@@ -5,31 +5,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/css/homepage.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/homepage.css')?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/common.css')?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Dancing+Script" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-default navbar-static-top" data-spy="affix">
+<!-- Navigation bar -->
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img class="img-rounded img-responsive card-img-overlay" id="logo" src="public/images/logo.png" alt="PizzaNow"></a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img class="img-rounded img-responsive" id="logo" src="<?php echo base_url('public/images/logo.png')?>" alt="PizzaNow">
+            </a>
         </div>
-        <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
             <?php
 
-            echo "<li class='nav-item active-tab'><a href='/PizzaNow/index.php'>Home</a></li>";
-            echo "<li class='nav-item'><a href='/PizzaNow/index.php/HomePage/menu'>Menu</a></li>";
+            echo "<li class='nav-item active-tab'><a href='PizzaNow'>Home</a></li>";
+            echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
             echo "<li class='nav-item'><a href=''>About Us</a></li>";
-            echo "<li class='nav-item'><a href=''>Contact</a></li>";
+            echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
             echo "<li class='nav-item cta cta-colored'><a href='' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span></a></li>";
 
             ?>
         </ul>
+        </div>
     </div>
 </nav>
+<!-- /Navigation bar -->
 
 <!-- Carousel -->
 <div id="myCarousel" class="carousel slide " data-ride="carousel">
@@ -41,7 +52,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active" data-interval="100">
-            <img class="first-slide " src="public/images/slide1.jpg" alt="First slide">
+            <img class="first-slide " src="<?php echo base_url('public/images/slide1.jpg')?>" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Example headline.</h1>
@@ -51,7 +62,7 @@
             </div>
         </div>
         <div class="item" data-interval="100">
-            <img class="second-slide" src="public/images/slide2.jpg" height="30%" alt="Second slide">
+            <img class="second-slide" src="<?php echo base_url('public/images/slide2.jpg')?>" height="30%" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Another example headline.</h1>
@@ -61,7 +72,7 @@
             </div>
         </div>
         <div class="item" data-interval="100">
-            <img class="third-slide" src="public/images/slide3.jpg" alt="Third slide">
+            <img class="third-slide" src="<?php echo base_url('public/images/slide3.jpg')?>" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
@@ -80,14 +91,16 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<!-- /.carousel -->
+<!-- /Carousel -->
 
+<!-- Company info -->
 <div class="container">
     <div class="jumbotron home-about ">
-        <img class="img-responsive img-icon " src="public/images/icon_new.png" alt="pizza icon">
+
         <div class="col-md-7">
-        <h2>Welcome to PizzaNow!</h2>
-        <p class="text-danger font-italic">Our chefs are working 24/7 and are ready to accept visitors and at any time of the day and night.</p> <br>
+            <img class="img-responsive img-icon " src="<?php echo base_url('public/images/icon_new.png')?>" alt="pizza icon">
+            <h2>Welcome to PizzaNow!</h2>
+            <p class="text-danger font-italic">Our chefs are working 24/7 and are ready to accept visitors and at any time of the day and night.</p> <br>
             <p class="text-warning">We would like to take this opportunity to welcome you at our Pizza House. We are offering a warm, friendly atmosphere to share a meal with family and friends at any time of the day or evening.</p>
 
             <div class="text-center">
@@ -97,26 +110,28 @@
         </div>
 
         <div class="col-md-5">
-            <img class="img-fluid img-responsive" src="public/images/pizzanow.png" alt="pizza icon">
+            <img class="img-fluid img-responsive" src="<?php echo base_url('public/images/pizzanow.png')?>" alt="pizza icon">
         </div>
     </div>
 </div>
+<!-- /Company info -->
 
+<!-- Home menu -->
 <div class="jumbotron home-menu">
     <h3>Order online now</h3>
     <h1>Our delicious Pizzas</h1>
     <div class="container home-menu-items">
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-fluid img-responsive align-content-center" src="public/images/product_1.png" alt="pizza icon">
+                <img class="img-fluid img-responsive align-content-center" src="<?php echo base_url('public/images/product_1.png')?>" alt="pizza icon">
                 <h3>Margherita Pizza</h3>
             </div>
             <div class="col-sm-4">
-                <img class="img-fluid img-responsive align-content-center" src="public/images/product_2.png" alt="pizza icon">
+                <img class="img-fluid img-responsive align-content-center" src="<?php echo base_url('public/images/product_2.png')?>" alt="pizza icon">
                 <h3>Pepperoni Pizza</h3>
             </div>
             <div class="col-sm-4">
-                <img class="img-fluid img-responsive align-content-center" src="public/images/product_3.png" alt="pizza icon">
+                <img class="img-fluid img-responsive align-content-center" src="<?php echo base_url('public/images/product_3.png')?>" alt="pizza icon">
                 <h3>Mexican Pizza</h3>
             </div>
         </div>
@@ -126,8 +141,10 @@
 
     </div>
 </div>
+<!-- /Home menu -->
 
-<div class="container ">
+<!-- Contact info -->
+<div id="contact" class="container ">
     <div class="jumbotron contact-info ">
         <div class="col-md-7 col-md-push-5">
             <h2>Get in touch with us !</h2>
@@ -157,27 +174,16 @@
         </div>
     </div>
 </div>
+<!-- /Contact info -->
 
-<footer>
+<!-- Footer -->
+<footer class="navbar-static-bottom">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
         <p>© 2020 Copyright: <a href="https://mdbootstrap.com/"> pizzanow.com</a><p>
-
     </div>
 </footer>
-<!--<div class="row featurette">-->
-<!--    <div class="col-md-7 col-md-push-5">-->
-<!--        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>-->
-<!--        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>-->
-<!--    </div>-->
-<!--    <div class="col-md-5 col-md-pull-7">-->
-<!--        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">-->
-<!--    </div>-->
-<!--</div>-->
-    <!-- FOOTER -->
-<!--    <footer>-->
-<!--        <p class="pull-right"><a href="#">Back to top</a></p>-->
-<!--        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>-->
-<!--    </footer>-->
+<!-- /Footer -->
+
 </body>
 </html>

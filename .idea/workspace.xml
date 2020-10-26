@@ -20,27 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30620a-c027-4d49-a617-1bcd63dcda5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/controllers/HomePage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/controllers/MenuPage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/homepage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/menupage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/homepage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/menupage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/about_pizza.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/footer-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/home_image1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/icon_new.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/pizzanow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/product_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/product_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/product_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/slide1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/slide2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/slide3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/HomePage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/HomePage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/MenuPage.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/welcome_message.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/welcome_message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/menupage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/menupage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/homepage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/menupage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/menupage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +53,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/application/views/menupage.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/application/views/homepage.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1jC9rzNw12ACC9gAifdBM1ZhsE1" />
@@ -95,7 +86,9 @@
       <workItem from="1603297411659" duration="314000" />
       <workItem from="1603298880368" duration="340000" />
       <workItem from="1603375007186" duration="215000" />
-      <workItem from="1603427442751" duration="26618000" />
+      <workItem from="1603427442751" duration="28208000" />
+      <workItem from="1603601126368" duration="8407000" />
+      <workItem from="1603625396168" duration="7911000" />
     </task>
     <servers />
   </component>
@@ -119,17 +112,17 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="474" y="210" key="#Inspections/0.0.1680.1050@0.0.1680.1050" timestamp="1603435690069" />
-    <state x="506" y="258" key="NewPhpClassDialog" timestamp="1603520489197">
+    <state x="506" y="258" key="NewPhpClassDialog" timestamp="1603604616358">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="506" y="258" key="NewPhpClassDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1603520489197" />
-    <state x="659" y="455" key="NewPhpFileDialog" timestamp="1603519761465">
+    <state x="506" y="258" key="NewPhpClassDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1603604616358" />
+    <state x="659" y="455" key="NewPhpFileDialog" timestamp="1603684778906">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="659" y="455" key="NewPhpFileDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1603519761465" />
-    <state x="538" y="157" width="604" height="735" key="find.popup" timestamp="1603429820188">
+    <state x="659" y="455" key="NewPhpFileDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1603684778906" />
+    <state x="538" y="157" width="604" height="735" key="find.popup" timestamp="1603546940392">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="538" y="157" width="604" height="735" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1603429820188" />
+    <state x="538" y="157" width="604" height="735" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1603546940392" />
   </component>
 </project>
