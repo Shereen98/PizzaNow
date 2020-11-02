@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PizzaNow</title>
+    <title> Welcome to PizzaNow!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -29,11 +29,11 @@
         <ul class="nav navbar-nav navbar-right">
             <?php
 
-            echo "<li class='nav-item active-tab'><a href='PizzaNow'>Home</a></li>";
+            echo "<li class='nav-item active-tab'><a href='#'>Home</a></li>";
             echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
             echo "<li class='nav-item'><a href=''>About Us</a></li>";
             echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
-            echo "<li class='nav-item cta cta-colored'><a href='' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span></a></li>";
+            echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
 
             ?>
         </ul>
@@ -156,7 +156,7 @@
                 <p><span class="glyphicon glyphicon-map-marker"></span>  76/3/c, Pahala Karagahamuna, Kadawatha</p>
             </div>
             <div class="well">
-                <p><span class="glyphicon glyphicon-earphone"></span>  0773178370/p>
+                <p><span class="glyphicon glyphicon-earphone"></span>  0773178370</p>
             </div>
         </div>
 

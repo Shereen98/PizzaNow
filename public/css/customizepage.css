@@ -1,0 +1,50 @@
+/*.sizeWrap {*/
+/*    padding: 50px;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup {*/
+/*    max-width: 800px;*/
+/*    margin: auto;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup .pizzaSize {*/
+/*    padding: 40px;*/
+/*    box-shadow: none;*/
+/*    position: relative;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup .pizzaSize.active {*/
+/*    outline: none !important;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup .pizzaSize.active .size {*/
+/*    border-color: #4cd264;*/
+/*    outline: none !important;*/
+/*    box-shadow: 0px 3px 22px 0px #7b7b7b;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup .pizzaSize .size {*/
+/*    position: absolute;*/
+/*    right: 3px;*/
+/*    top: 3px;*/
+/*    bottom: 3px;*/
+/*    left: 3px;*/
+/*    background-size: contain;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    border: 2px solid transparent;*/
+/*    transition: all 0.5s;*/
+/*}*/
+
+/*.sizeWrap .sizeButtonGroup .pizzaSize .size:hover {*/
+/*    border-color: #4cd264;*/
+/*    outline: none !important;*/
+/*}*/
+
+input {
+    width:36px;
+    height: 36px;
+    font-weight: bold;
+    border-width: 0;
+    text-align: center;
+}

@@ -1,3 +1,5 @@
+
+
 .jumbotron {
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url("https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
     margin-bottom: 0;
@@ -18,6 +20,10 @@
     margin-top: 8%;
 }
 
+/*.container-fluid{*/
+/*    margin-left: 10%;*/
+/*    margin-right: 10%;*/
+/*}*/
 
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
     background-color: maroon!important;
@@ -29,4 +35,50 @@
     font-weight: bold!important;
     font-family: "optima";
     font-size: 15px;
+
+}
+
+.thumbnail {
+    border-radius: 30px!important;
+}
+
+h3 {
+   font-family: Optima;
+}
+
+h3, p{
+    text-align: center;
+}
+
+#price{
+    font-weight: bold;
+}
+
+.menu-btn {
+    background-color: #ffce33;
+    font-weight: bold!important;
+    color: #990000;
+    border-radius: 10px!important;
+}
+
+.item-qty > button
+{
+    border-radius: 10px!important;
+}
+
+#model-thumbnail{
+    border-width: 0!important;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.item-qty>input {
+    width:36px;
+    height: 36px;
+    font-weight: bold;
+    border-width: 0;
+    text-align: center;
 }

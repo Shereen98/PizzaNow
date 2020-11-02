@@ -1,0 +1,26 @@
+.text-right>button{
+    color: white;
+    background-color: red;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: Optima;
+    font-weight: bold;
+}
+
+
+input {
+    width:36px;
+    height: 36px;
+    font-weight: bold;
+    border-width: 0;
+    text-align: center;
+}
+
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
