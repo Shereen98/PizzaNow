@@ -29,9 +29,9 @@
         <ul class="nav navbar-nav navbar-right">
             <?php
 
-            echo "<li class='nav-item active-tab'><a href='#'>Home</a></li>";
+            echo "<li class='nav-item active'><a href='#'>Home</a></li>";
             echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-            echo "<li class='nav-item'><a href=''>About Us</a></li>";
+            echo "<li class='nav-item'><a href='#about'>About Us</a></li>";
             echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
             echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
 
@@ -55,9 +55,9 @@
             <img class="first-slide " src="<?php echo base_url('public/images/slide1.jpg')?>" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Example headline.</h1>
-                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <p>Juicy, spicy Pizzas</p>
+                    <h1>Best Pizza in Town</h1>
+                   <a class="btn btn-lg btn-danger" href="/PizzaNow/HomePage/menu" role="button">ORDER ONLINE NOW</a>
                 </div>
             </div>
         </div>
@@ -65,9 +65,9 @@
             <img class="second-slide" src="<?php echo base_url('public/images/slide2.jpg')?>" height="30%" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p>Cheesy blast</p>
+                    <h1>Super cheesy Pizzas</h1>
+                    <a class="btn btn-lg" href="/PizzaNow/HomePage/menu" role="button">ORDER ONLINE NOW</a>
                 </div>
             </div>
         </div>
@@ -75,9 +75,9 @@
             <img class="third-slide" src="<?php echo base_url('public/images/slide3.jpg')?>" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <p>We make Pizza like Pro</p>
+                    <h1>Pizza with thin crispy crust</h1>
+                    <a class="btn btn-lg btn-danger" href="/PizzaNow/HomePage/menu" role="button">ORDER ONLINE NOW</a>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
 <!-- /Carousel -->
 
 <!-- Company info -->
-<div class="container">
+<div id="about" class="container">
     <div class="jumbotron home-about ">
 
         <div class="col-md-7">
@@ -136,7 +136,7 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-menu">View more</button>
+            <a href="/PizzaNow/HomePage/menu" type="button" class="btn btn-menu">View more</a>
         </div>
 
     </div>
@@ -184,6 +184,7 @@
     </div>
 </footer>
 <!-- /Footer -->
+
 
 </body>
 </html>

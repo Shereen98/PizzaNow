@@ -17,6 +17,11 @@
     opacity: 0.9;
 }
 
+.navbar.active li a{
+    color: #ffce33!important;
+    background-color: maroon;
+}
+
 .navbar-brand {
     padding: 0px;
 }

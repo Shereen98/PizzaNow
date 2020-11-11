@@ -29,11 +29,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
 
-                echo "<li class='nav-item active-tab'><a href='#'>Home</a></li>";
+                echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
                 echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
                 echo "<li class='nav-item'><a href=''>About Us</a></li>";
                 echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
-                echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
+                echo "<li class='nav-item cta cta-colored active'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
 
                 ?>
             </ul>
@@ -57,35 +57,59 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead >
-                                <tr>
-                                    <th class="text-center" scope="col">Item</th>
-                                    <th class="text-center" scope="col">Unit Price (Rs.)</th>
-                                    <th class="text-center" scope="col">Qty</th>
-                                    <th class="text-center" scope="col">Subtotal</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($side as $item) { ?>
-                                <tr class="text-center">
-                                    <th class="text-center" scope="row"><?php echo $item['name']; ?></th>
-                                    <td><?php echo $item['price']; ?></td>
-                                    <td>
-                                        <button class="btn"  type="button" onclick="decrementQty(<?php echo $item['id'];?>)" ><span class='glyphicon glyphicon-minus'></span></button>
-                                        <input  id= type="number" name="text" value="<?php echo $item['quantity'];?>" readonly="true">
-                                        <button class="btn" type="button" onclick="incrementQty(<?php echo $item['id'];?>)" ><span class='glyphicon glyphicon-plus'></span></button>
-                                    </td>
-                                    <td><?php echo $item['quantity']*$item['price']; ?></td>
-                                    <td>
-                                        <a href="<?php echo base_url('Cart/remove/'. $item['id']);?>" class="btn btn-warning">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php }?>
-                                </tbody>
-                            </table>
+                            <?php if(!empty($pizza) || !empty($side)) { ?>
+                                <table class="table table-hover">
+                                    <thead >
+                                    <tr>
+                                        <th scope="col">Item</th>
+                                        <th class="text-center" scope="col">Unit Price (Rs.)</th>
+                                        <th class="text-center" scope="col">Qty</th>
+                                        <th class="text-center" scope="col">Total (Rs.)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php  foreach ($pizza as $item) { ?>
+                                    <tr class="text-center">
+                                        <th scope="row"><?php echo $item['name'].' Pizza'; ?></th>
+                                        <td><?php echo $item['price']; ?></td>
+                                        <td>
+                                            <button class="btn"  type="button" onclick="decrementQty(<?php echo $item['id'];?>)" ><span class='glyphicon glyphicon-minus'></span></button>
+                                            <input  id="<?php echo 'product_qty'.$item["id"]; ?>" type="number" name="text" value="<?php echo $item['quantity'];?>" readonly="true">
+                                            <button class="btn" type="button" onclick="incrementQty(<?php echo $item['id'];?>)" ><span class='glyphicon glyphicon-plus'></span></button>
+                                        </td>
+                                        <td><?php echo $item['quantity']*$item['price']; ?></td>
+                                        <td>
+                                            <a href="<?php echo base_url('Cart/removePizza/'. $item['id']);?>" class="btn btn-warning">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+
+                                   <?php  foreach ($side as $item) { ?>
+                                    <tr class="text-center">
+                                        <th scope="row"><?php echo $item['name']; ?></th>
+                                        <td><?php echo $item['price']; ?></td>
+                                        <td>
+                                            <button class="btn decrement"  type="button")" ><span class='glyphicon glyphicon-minus'></span></button>
+                                            <input  id="<?php echo 'product_qty'.$item["id"]; ?>" type="number" name="text" value="<?php echo $item['quantity'];?>" readonly="true">
+                                            <button class="btn increment" type="button" ><span class='glyphicon glyphicon-plus'></span></button>
+                                        </td>
+                                        <td><?php echo $item['quantity']*$item['price']; ?></td>
+                                        <td>
+                                            <a href="<?php echo base_url('Cart/removeSide/'. $item['id']);?>" class="btn btn-warning">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                   <?php } ?>
+                                    </tbody>
+                                </table>
+                            <?php }else{ ?>
+                                <p class="text-center">Your cart is empty...</p>
+                            <?php } ?>
+
                         </div>
                     </div>
                 </div>
@@ -125,7 +149,7 @@
 
 
 <!-- Footer -->
-<footer class="navbar-static-bottom navbar-fixed-bottom">
+<footer class="navbar-static-bottom navbar-fixed-bottom ">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
         <p>© 2020 Copyright: <a href="https://mdbootstrap.com/"> pizzanow.com</a><p>
@@ -134,28 +158,49 @@
 <!-- /Footer-->
 
 <script>
+    $(function() {
 
-    let tag_id = 'product_qty';
+        //increment the quantity
+        $('.increment').click(function () {
+            document.getElementById("product_qty").stepUp(1);
+            $("#total_price").val(parseFloat(parseFloat(fixedPrice)*parseFloat($("#product_qty").val())).toFixed(2));
+        });
 
-    function incrementQty($id){
-        document.getElementById(tag_id.concat($id)).stepUp(1);
+        //decrement the quantity
+        $('.decrement').click(function () {
+            let quantity = document.getElementById("product_qty").value;
+
+            if(quantity && quantity > 1){
+                document.getElementById("product_qty").stepDown(1);
+            }else{
+                quantity = 1;
+            }
+
+            $("#total_price").val(parseFloat(parseFloat(fixedPrice)*parseFloat($("#product_qty").val())).toFixed(2));
+        })
     }
-
-    function decrementQty($id){
-        let quantity = document.getElementById(tag_id.concat($id)).value;
-
-        if(quantity>1){
-            document.getElementById(tag_id.concat($id)).stepDown(1);
-        }else{
-            quantity = 1;
-        }
-    }
-    // Update item quantity
-    function updateCartItem(obj, rowid){
-       console.log(obj);
-       console.log(rowid);
-    }
+    // let tag_id = 'product_qty';
+    //
+    // function incrementQty($id){
+    //     document.getElementById(tag_id.concat($id)).stepUp(1);
+    // }
+    //
+    // function decrementQty($id){
+    //     let quantity = document.getElementById(tag_id.concat($id)).value;
+    //
+    //     if(quantity>1){
+    //         document.getElementById(tag_id.concat($id)).stepDown(1);
+    //     }else{
+    //         quantity = 1;
+    //     }
+    // }
+    // // Update item quantity
+    // function updateCartItem(obj, rowid){
+    //    console.log(obj);
+    //    console.log(rowid);
+    // }
 </script>
 
 </body>
 </html>
+

@@ -41,8 +41,16 @@
 /*    outline: none !important;*/
 /*}*/
 
-input {
+#product_qty {
     width:36px;
+    height: 36px;
+    font-weight: bold;
+    border-width: 0;
+    text-align: center;
+}
+
+#total_price{
+    width:130px;
     height: 36px;
     font-weight: bold;
     border-width: 0;

@@ -5,7 +5,7 @@ class MenuPage extends CI_Controller
 {
     public function index(){
 
-        $this->load->view('menupage');
+       $this->load->view('menupage');
     }
 
     public function customizePizza($id){

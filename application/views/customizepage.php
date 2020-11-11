@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('public/css/menupage.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('public/css/common.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('public/css/customizepage.css')?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/menupage.css')?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Dancing+Script" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -31,8 +31,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
 
-                echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                echo "<li class='nav-item'><a href='/PizzaNow/HomePage'>Home</a></li>";
+                echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
                 echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
 
                 ?>
@@ -60,21 +60,21 @@
                                     <p>Regular Pizza</p>
                                     <p><?php echo $pizza["regular_pizza_price"]; ?></p>
                                 </div>
-                                <input type="radio" name="options" checked>
+                                <input type="radio" name="size" value="<?php echo $pizza["regular_pizza_price"]; ?>" checked>
                             </label>
                             <label class="btn btn-default pizzaSize">
                                 <div class="size">
                                     <p>Medium Pizza</p>
                                     <p><?php echo $pizza["medium_pizza_price"]; ?></p>
                                 </div>
-                                <input type="radio" name="options">
+                                <input type="radio" name="size" value="<?php echo $pizza["medium_pizza_price"]; ?>">
                             </label>
                             <label class="btn btn-default pizzaSize">
                                 <div class="size">
                                     <p>Large Pizza</p>
                                     <p><?php echo $pizza["large_pizza_price"]; ?></p>
                                 </div>
-                                <input type="radio" name="options">
+                                <input type="radio" name="size" value="<?php echo $pizza["large_pizza_price"]; ?>">
                             </label>
                             <?php } ?>
                         </div>
@@ -98,7 +98,7 @@
                                     <div class="col-sm-6">
                                         <div class="btn" data-toggle="buttons">
                                             <label class="btn btn-default">
-                                                <input type="checkbox" autocomplete="off" name="topping" value="<?php echo $row["topping_id"]; ?>">
+                                                <input type="checkbox" class="topping" id="<?php echo $row["topping_id"]; ?>" autocomplete="off" name="topping" value="<?php echo $row["price"]; ?>">
                                                 <div class="media">
                                                     <div class="media-left media-middle">
                                                         <img class="media-object" style="width:60px" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['topping_image']); ?>" />
@@ -122,7 +122,7 @@
                                     <div class="col-sm-6">
                                         <div class="btn" data-toggle="buttons">
                                             <label class="btn btn-default">
-                                                <input type="checkbox" autocomplete="off">
+                                                <input type="checkbox" class="topping" name="topping" id="<?php echo $row["topping_id"]; ?>"  value="<?php echo $row["price"]; ?>" autocomplete="off">
                                                 <div class="media">
                                                     <div class="media-left media-middle">
                                                         <img class="media-object" style="width:60px" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['topping_image']); ?>" />
@@ -146,21 +146,26 @@
         </div>
 
         <div class="col-md-5 col-md-pull-7">
+            <div class="text-left">
+                <a type="button" href='/PizzaNow/HomePage/menu' class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span></a>
+            </div>
             <?php if(!empty($pizza)){ ?>
             <div class="thumbnail" id="model-thumbnail">
                 <h3><?php echo $pizza["pizza_name"] ?></h3>
                 <img src="data:image/png;charset=utf8;base64,<?php echo base64_encode($pizza['pizza_image']); ?>" />
                 <div class="caption">
                     <p><?php echo $pizza["pizza_description"] ?></p>
+                    <h2 class="text-center">Rs.<input id="total_price" type="number" name="text" value="<?php echo $pizza["regular_pizza_price"]; ?>" readonly="true"></h2>
                     <br>
                     <div class="text-center">
 <!--                        <a href="" class="btn btn-danger less_qty"><span class='glyphicon glyphicon-minus'></span></a>-->
-                        <button class="btn btn-danger" onclick="decrementQty()" type="button" ><span class='glyphicon glyphicon-minus'></span></button>
+                        <button class="btn btn-danger decrement"  type="button" ><span class='glyphicon glyphicon-minus'></span></button>
                             <input id="product_qty" type="number" name="text" value="1" readonly="true">
-                        <button class="btn btn-success" onclick="incrementQty()" type="button"><span class='glyphicon glyphicon-plus'></span></button>
+                            <input id="unit_price" type="number" name="text" value="1" hidden="true">
+                        <button class="btn btn-success increment"  type="button"><span class='glyphicon glyphicon-plus'></span></button>
 <!--                        <a href="" class="btn btn-success add_qty"><span class='glyphicon glyphicon-plus'></span></a>-->
-                        &nbsp;
-                        <button class="btn menu-btn" type="button" product_id="<?php echo $pizza['pizza_id']?>">Add to Cart</button>
+                        &nbsp;&nbsp;
+                        <button class="btn menu-btn" onclick="addtocart(<?php echo $pizza['pizza_id']?>)" type="button">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -179,20 +184,87 @@
     </div>
 </footer>
 <!-- /Footer-->
+
 <script>
+    $(function() {
 
-    function incrementQty(){
-        document.getElementById("product_qty").stepUp(1);
-    }
+        $('input[name=size]:first').attr('checked', true);
+        let total = $('input[name=size]:checked').val();
+        let fixedPrice = 0;
 
-    function decrementQty(){
-        let quantity = document.getElementById("product_qty").value;
+        //change price according to the selected size
+        $('input[name=size]').change(function()  {
 
-        if(quantity && quantity > 1){
-            document.getElementById("product_qty").stepDown(1);
-        }else{
-            quantity = 1;
-        }
+            total = $('input[name=size]:checked').val();
+
+
+            if($(".topping").is(":checked")){
+                let toppingPrice = 0;
+                $("input[name=topping]:checked").each(function (){
+                    toppingPrice = (parseFloat(toppingPrice) + parseFloat($(this).val())).toFixed(2);
+                })
+                total = parseFloat(parseFloat(toppingPrice)+parseFloat(total)).toFixed(2);
+                fixedPrice = total;
+                $("#unit_price").val(fixedPrice);
+                alert(total)
+            }else{
+                total = $('input[name=size]:checked').val();
+                fixedPrice = total;
+            }
+
+            $("#total_price").val(parseFloat(parseFloat(total)*parseFloat($("#product_qty").val())).toFixed(2));
+            fixedPrice = total;
+            $("#unit_price").val(fixedPrice);
+
+        }).change();
+
+        //change price according to the topping selected
+        $(".topping").change(function (){
+            let amountToAdd = 0;
+            $(".topping").each(function (){
+                if($(this).is(":checked")){
+                    amountToAdd = (parseFloat(amountToAdd) + parseFloat($(this).val())).toFixed(2);
+                }
+            });
+            fixedPrice = parseFloat(parseFloat(amountToAdd)+parseFloat(total)).toFixed(2);
+            $("#unit_price").val(fixedPrice);
+            $("#total_price").val(parseFloat(parseFloat(amountToAdd)+parseFloat(total)).toFixed(2));
+        }).change();
+
+        //increment the quantity
+        $('.increment').click(function () {
+            document.getElementById("product_qty").stepUp(1);
+            $("#total_price").val(parseFloat(parseFloat(fixedPrice)*parseFloat($("#product_qty").val())).toFixed(2));
+        });
+
+        //decrement the quantity
+        $('.decrement').click(function () {
+            let quantity = document.getElementById("product_qty").value;
+
+            if(quantity && quantity > 1){
+                document.getElementById("product_qty").stepDown(1);
+            }else{
+                quantity = 1;
+            }
+
+            $("#total_price").val(parseFloat(parseFloat(fixedPrice)*parseFloat($("#product_qty").val())).toFixed(2));
+        })
+
+    });
+
+    function addtocart($id)
+    {
+
+        let qty = $("#product_qty").val();
+        // let price = $('#total_price').val();
+        let price = $("#unit_price").val();
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('Cart/addPizza');?>",
+            data: "id="+$id+"&qty="+qty+"&price="+price,
+        });
+
     }
 </script>
 

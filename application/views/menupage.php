@@ -31,9 +31,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-
                 echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
                 echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
 
                 ?>
@@ -208,7 +207,7 @@
 
                                         <br>
                                         <div class="text-center">
-                                            <button type="button" class="btn menu-btn">Add to Cart</button>
+                                            <button onclick="addtocart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +241,7 @@
 
                                         <br>
                                         <div class="text-center">
-                                            <a href=""class="btn menu-btn">Add to Cart</a>
+                                            <button onclick="addtocart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +287,7 @@
     {
 
         let qty = $("#product_qty"+$id).val();
-        console.log(qty);
+
         $.ajax({
             type: "POST",
             url: "<?php echo site_url('Cart/addSide');?>",
