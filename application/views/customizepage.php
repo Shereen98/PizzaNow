@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> Welcome to PizzaNow!</title>
+    <title> Customize you pizza!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -30,11 +30,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-
-                echo "<li class='nav-item'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-                echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
-
+                    echo "<li class='nav-item'><a href='/PizzaNow/HomePage'>Home</a></li>";
+                    echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
                 ?>
             </ul>
         </div>
@@ -175,6 +173,19 @@
 </div>
 <!-- /Content -->
 
+<!--success modal-->
+<div class="modal fade" id="success-modal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Successfully added to the cart!</h5>
+            </div>
+            <div class="modal-footer text-center">
+                <a href="/PizzaNow/HomePage/menu" type="button" style="background-color: maroon;color: white" class="btn btn-default" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="navbar-static-bottom">
@@ -258,11 +269,15 @@
         let qty = $("#product_qty").val();
         // let price = $('#total_price').val();
         let price = $("#unit_price").val();
+        let sub_total = $('#total_price').val();
 
         $.ajax({
             type: "POST",
             url: "<?php echo site_url('Cart/addPizza');?>",
-            data: "id="+$id+"&qty="+qty+"&price="+price,
+            data: "id="+$id+"&qty="+qty+"&price="+price+"&sub_total="+sub_total,
+            success: function(response){
+                $('#success-modal').modal('show');
+            }
         });
 
     }

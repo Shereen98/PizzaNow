@@ -28,13 +28,11 @@
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <?php
-
-            echo "<li class='nav-item active'><a href='#'>Home</a></li>";
-            echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-            echo "<li class='nav-item'><a href='#about'>About Us</a></li>";
-            echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
-            echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
-
+                echo "<li class='nav-item active'><a href='#'>Home</a></li>";
+                echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                echo "<li class='nav-item'><a href='#about'>About Us</a></li>";
+                echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
+                echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
             ?>
         </ul>
         </div>

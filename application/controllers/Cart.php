@@ -6,21 +6,38 @@ class Cart extends CI_Controller
     const CART_SESSION = "cart";
     const PIZZA_SESSION = "pizzaCart";
     const SIDE_SESSION = "sideCart";
+    const MEAL_SESSION = "mealCart";
+    const DELIVERY_CHARGE = 150.00;
 
     public function index()
     {
-        $this->getCart();
+        $this->addToCart();
+
         $data['cart'] = $this->getSessions(self::CART_SESSION);
         $data['pizza'] = $this->getSessions(self::PIZZA_SESSION);
         $data['side'] = $this->getSessions(self::SIDE_SESSION);
+        $data['meal'] = $this->getSessions(self::MEAL_SESSION);
 
         $this->load->view('cart', $data);
     }
 
-    public function getCart(){
+    public function checkout(){
+
+        $data['cart'] = $this->getSessions(self::CART_SESSION);
+        $data['pizza'] = $this->getSessions(self::PIZZA_SESSION);
+        $data['side'] = $this->getSessions(self::SIDE_SESSION);
+        $data['meal'] = $this->getSessions(self::MEAL_SESSION);
+
+        $this->load->view('checkoutpage', $data);
+
+    }
+
+    public function addToCart(){
         $item = array(
             'quantity' => $this->getQuantity(self::PIZZA_SESSION)+$this->getQuantity(self::SIDE_SESSION),
-            'price' => $this->getTotalPrice(self::PIZZA_SESSION)+$this->getTotalPrice(self::SIDE_SESSION)
+            'price' => $this->getTotalPrice(),
+            'sub_total' => $this->getSubTotal(),
+            'delivery_charge' => self::DELIVERY_CHARGE
         );
         $cart = array($item);
         $this->session->set_userdata(self::CART_SESSION, serialize($cart));
@@ -40,23 +57,15 @@ class Cart extends CI_Controller
             'description' => $pizza['pizza_description'],
             'image' => $pizza['pizza_image'],
             'price' => $price,
-            'quantity' => $qty
+            'quantity' => $qty,
+            'sub_total' => $price*$qty
         );
-        if(!$this->session->has_userdata(self::PIZZA_SESSION)) {
-            $cart = array($item);
-            $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
-        } else {
-            $index = $this->exists($id,self::PIZZA_SESSION);
-            $cart = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
-            if($index == -1) {
-                array_push($cart, $item);
-                $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
-            } else {
-                $cart[$index]['quantity']++;
-                $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
-            }
-        }
-        redirect('cart');
+
+            $pizza_cart = array($item);
+            $this->session->set_userdata(self::PIZZA_SESSION, serialize($pizza_cart));
+
+
+        redirect('menupage');
     }
 
 
@@ -65,34 +74,42 @@ class Cart extends CI_Controller
         $id = $this->input->post('id');
         $qty = $this->input->post('qty');
 
-        $product = $this->menu->getSide($id);
+        $side = $this->menu->getSide($id);
         $item = array(
-            'id' => $product['side_id'],
-            'name' => $product['side_name'],
-            'description' => $product['side_description'],
-            'image' => $product['side_image'],
-            'price' => $product['price'],
-            'portion' => $product['side_portion'],
-            'quantity' => $qty
+            'id' => $side['side_id'],
+            'name' => $side['side_name'],
+            'description' => $side['side_description'],
+            'image' => $side['side_image'],
+            'price' => $side['price'],
+            'portion' => $side['side_portion'],
+            'quantity' => $qty,
+            'sub_total' => $side['price']*$qty
         );
 
-        if(!$this->session->has_userdata(self::SIDE_SESSION)) {
-            $cart = array($item);
-            $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
-        } else {
-            $index = $this->exists($id,self::SIDE_SESSION);
-            $cart = array_values(unserialize($this->session->userdata(self::SIDE_SESSION)));
-            if($index == -1) {
-                array_push($cart, $item);
-                $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
-            } else {
-                $cart[$index]['quantity']++;
-                $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
-            }
-        }
-//        $this->load->view('cart');
-        redirect('cart');
+            $side_cart = array($item);
+            $this->session->set_userdata(self::SIDE_SESSION, serialize($side_cart));
     }
+
+    public function addMeal(){
+
+        $id = $this->input->post('id');
+        $qty = $this->input->post('qty');
+
+        $meal = $this->menu->getMeal($id);
+        $item = array(
+            'id' => $meal['deal_id'],
+            'name' => $meal['deal_name'],
+            'description' => $meal['deal_description'],
+            'image' => $meal['deal_image'],
+            'price' => $meal['price'],
+            'quantity' => $qty,
+            'sub_total' => $meal['price']*$qty
+        );
+
+        $meal_cart = array($item);
+        $this->session->set_userdata(self::MEAL_SESSION, serialize($meal_cart));
+    }
+
 
     public function getSessions($session_name){
         $cart_session = '';
@@ -117,87 +134,145 @@ class Cart extends CI_Controller
         return $quantity;
     }
 
-    public function getTotalPrice($session_name){
-        $price = 0;
-
-        if($this->session->has_userdata($session_name)){
-            $cart = array_values(unserialize($this->session->userdata($session_name)));
-            for ($i = 0; $i < count($cart); $i ++) {
-                $price +=$cart[$i]['price'];
-            }
-            return $price;
-        }
-        return $price;
-    }
-
     public function removeSide($id)
     {
-        $index = $this->exists($id,self::SIDE_SESSION);
-        $cart = array_values(unserialize($this->session->userdata(self::SIDE_SESSION)));
-        unset($cart[$index]);
-        $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
+        $session_index = $this->isItemAvailable($id,self::SIDE_SESSION);
+        $side_cart = array_values(unserialize($this->session->userdata(self::SIDE_SESSION)));
+        unset($side_cart[$session_index]);
+        $this->session->set_userdata(self::SIDE_SESSION, serialize($side_cart));
         redirect('cart');
-
-//       session_destroy();
     }
 
     public function removePizza($id){
-        $index = $this->exists($id,self::PIZZA_SESSION);
-        $cart = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
-        unset($cart[$index]);
-        $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
+        $session_index = $this->isItemAvailable($id,self::PIZZA_SESSION);
+        $pizza_cart = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
+        unset($pizza_cart[$session_index]);
+        $this->session->set_userdata(self::PIZZA_SESSION, serialize($pizza_cart));
         redirect('cart');
     }
 
-    private function exists($id,$session_name)
+    public function removeMeal($id){
+        $session_index = $this->isItemAvailable($id,self::MEAL_SESSION);
+        $meal_cart = array_values(unserialize($this->session->userdata(self::MEAL_SESSION)));
+        unset($meal_cart[$session_index]);
+        $this->session->set_userdata(self::MEAL_SESSION, serialize($meal_cart));
+        redirect('cart');
+    }
+
+    private function isItemAvailable($id,$session_name)
     {
-        $cart = array_values(unserialize($this->session->userdata($session_name)));
-        for ($i = 0; $i < count($cart); $i ++) {
-            if ($cart[$i]['id'] == $id) {
+        $cart_content = array_values(unserialize($this->session->userdata($session_name)));
+        for ($i = 0; $i < count($cart_content); $i ++) {
+            if ($cart_content[$i]['id'] == $id) {
                 return $i;
             }
         }
         return -1;
     }
 
-    public function pizzaPrice(){
-        $pizza_data = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
+    public function getPrice($session_name){
+
         $price = 0;
 
-        if(!empty($pizza_data)){
-            foreach ($pizza_data as $pizza) {
-                if (!empty($pizza['topping_id'])) {
-                    $price += ($pizza['pizza_price'] + $pizza['topping_price']) * $pizza['quantity'];
-                } else {
-                    $price += $pizza['pizza_price'] * $pizza['quantity'];
+        if($this->session->has_userdata($session_name)) {
+            $data = array_values(unserialize($this->session->userdata($session_name)));
+            if (!empty($data)) {
+                foreach ($data as $item) {
+                    $price += $item['price'] * $item['quantity'];
+                }
+                return $price;
+            }
+        }
+        return $price;
+    }
+
+    public function getSubTotal(){
+        $pizza_price = $this->getPrice(self::PIZZA_SESSION);
+        $side_price = $this->getPrice(self::SIDE_SESSION);
+        $meal_price = $this->getPrice(self::MEAL_SESSION);
+
+        return $pizza_price+$side_price+$meal_price;
+    }
+
+    public function getTotalPrice(){
+        return $this->getSubTotal() + self::DELIVERY_CHARGE;
+    }
+
+    public function updatePizzaCart($id,$updateType){
+
+        if($this->session->has_userdata(self::PIZZA_SESSION)){
+            $cart = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
+
+            for ($i = 0; $i < count($cart); $i ++) {
+                if($cart[$i]['id'] == $id ){
+                    if($updateType == 'increment'){
+
+                        $cart[$i]['quantity'] += 1;
+                        $cart[$i]['sub_total'] += $cart[$i]['price'];
+                        $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
+
+
+                    }else {
+                        if ($cart[$i]['quantity'] > 1) {
+                            $cart[$i]['quantity'] = $cart[$i]['quantity'] - 1;
+                            $cart[$i]['sub_total'] = $cart[$i]['sub_total'] - $cart[$i]['price'];
+                            $this->session->set_userdata(self::PIZZA_SESSION, serialize($cart));
+                        }
+                    }
+                }
+
+            }
+        }
+        redirect('cart');
+    }
+
+    public function updateSideCart($id,$updateType){
+
+        if($this->session->has_userdata(self::SIDE_SESSION)){
+            $cart = array_values(unserialize($this->session->userdata(self::SIDE_SESSION)));
+            for ($i = 0; $i < count($cart); $i ++) {
+                if($cart[$i]['id'] == $id ){
+                    if($updateType == 'increment'){
+
+                        $cart[$i]['quantity'] += 1;
+                        $cart[$i]['sub_total'] +=  $cart[$i]['price'];
+                        $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
+
+                    }else{
+                        if($cart[$i]['quantity']>1){
+                            $cart[$i]['quantity'] = $cart[$i]['quantity'] - 1;
+                            $cart[$i]['sub_total'] = $cart[$i]['sub_total'] - $cart[$i]['price'];
+                            $this->session->set_userdata(self::SIDE_SESSION, serialize($cart));
+                        }
+                    }
                 }
             }
-            return $price;
         }
+        redirect('cart');
     }
 
-    public function sidePrice(){
-        $sides = array_values(unserialize($this->session->userdata('sideCart')));
-        $price = 0;
+    public function updateMealCart($id,$updateType){
 
-        if(!empty($sides)){
-            foreach ($sides as $side) {
-                $price += $side['price'] * $side['quantity'];
+        if($this->session->has_userdata(self::MEAL_SESSION)){
+            $cart = array_values(unserialize($this->session->userdata(self::MEAL_SESSION)));
+            for ($i = 0; $i < count($cart); $i ++) {
+                if($cart[$i]['id'] == $id ){
+                    if($updateType == 'increment'){
+
+                        $cart[$i]['quantity'] += 1;
+                        $cart[$i]['sub_total'] +=  $cart[$i]['price'];
+                        $this->session->set_userdata(self::MEAL_SESSION, serialize($cart));
+
+                    }else{
+                        if($cart[$i]['quantity']>1){
+                            $cart[$i]['quantity'] = $cart[$i]['quantity'] - 1;
+                            $cart[$i]['sub_total'] = $cart[$i]['sub_total'] - $cart[$i]['price'];
+                            $this->session->set_userdata(self::MEAL_SESSION, serialize($cart));
+                        }
+                    }
+                }
             }
-            return $price;
         }
-    }
-
-    private function total($pizza_price,$side_price) {
-
-        $total_price = 0;
-
-        if(!empty($pizza_price) && !empty($side_price)){
-            $total_price += ($pizza_price+$side_price);
-        }else{
-            $total_price = !empty($pizza_price)?$pizza_price:$side_price;
-        }
-
-        return $total_price;
+        redirect('cart');
     }
 }

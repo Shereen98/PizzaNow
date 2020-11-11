@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'phpmyadmin.ecs.westminster.ac.uk',
+	'username' => 'w1698420',
+	'password' => 'qsxmFFiEDnjT',
 	'database' => 'w1698420_0',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

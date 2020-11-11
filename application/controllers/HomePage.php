@@ -19,6 +19,7 @@ class HomePage extends CI_Controller
         $data['vegTopping'] = $this->menu->getAllToppings('Veg');
         $data['nonVegTopping'] = $this->menu->getAllToppings('NonVeg');
         $data['itemQuantity'] = $this->menu->getItemQuantity();
+        $data['mealDeals'] = $this->menu->getAllDeals();
 
         $this->load->view('menupage',$data);
     }

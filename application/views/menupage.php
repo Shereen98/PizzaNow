@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>PizzaNow Menu</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -31,10 +31,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-                echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp;0 items - Rs.0.00</a></li>";
-
+                    echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
+                    echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
                 ?>
             </ul>
         </div>
@@ -71,19 +70,31 @@
                 <div class="well">
                     <div class="row">
                         <br>
-                        <div class="col-sm-4 menu-data">
+                        <?php if(!empty($mealDeals)){ foreach($mealDeals as $row){ ?>
+                        <div class="col-sm-6 menu-data">
                             <div class="thumbnail">
-                                <h3>Chicken Hawaiian</h3>
-                                <img src="<?php echo base_url('public/images/about_pizza.png')?>">
+                                <h3><?php echo $row["deal_name"]; ?></h3>
+                                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['deal_image']); ?>" />
                                     <div class="caption">
-                                        <p>Crispy chicken bacon I jalapeno and pineapple tidbits on a mozzarella crust</p>
-                                        <p id="price">R - Rs.100.00 | M - Rs.800.00 | L - Rs.1060.00</p>
+                                        <p><?php echo $row["deal_description"]; ?></p>
+                                        <p id="price"> <?php echo 'Rs.'.$row["price"]?></p>
+
+                                        <div class="item-qty text-center">
+                                            <button class="btn btn-danger" onclick="decrementQty(<?php echo $row["deal_id"]; ?>)" type="button" ><span class='glyphicon glyphicon-minus'></span></button>
+                                            <input id="<?php echo 'product_qty'.$row["deal_id"]; ?>" type="number" name="text" value="1" readonly="true">
+                                            <button class="btn btn-success" onclick="incrementQty(<?php echo $row["deal_id"]; ?>)" type="button"><span class='glyphicon glyphicon-plus'></span></button>
+                                        </div>
+                                        <br>
+
                                         <div class="text-center">
-                                            <button type="button" class="btn menu-btn">Customize now</button>
+                                            <button type="button" onclick="addMealToCart(<?php echo $row["deal_id"]; ?>)" style="width: 50%" class="btn menu-btn">Add to cart</button>
                                         </div>
                                     </div>
                             </div>
                         </div>
+                        <?php } }else{ ?>
+                            <p>Deals(s) not found...</p>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -172,7 +183,7 @@
 
                                         <br>
                                         <div class="text-center">
-                                            <button onclick="addtocart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
+                                            <button onclick="addToCart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +218,7 @@
 
                                         <br>
                                         <div class="text-center">
-                                            <button onclick="addtocart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
+                                            <button onclick="addToCart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -241,7 +252,7 @@
 
                                         <br>
                                         <div class="text-center">
-                                            <button onclick="addtocart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
+                                            <button onclick="addToCart(<?php echo $row["side_id"]; ?>)" type="button" class="btn menu-btn">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -256,6 +267,20 @@
         </div>
     </div>
 <!-- /menu-content -->
+
+<!--success modal-->
+<div class="modal fade" id="success-modal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Successfully added to the cart!</h5>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" style="background-color: maroon;color: white" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="navbar-static-bottom">
@@ -283,7 +308,7 @@
         }
     }
 
-    function addtocart($id)
+    function addToCart($id)
     {
 
         let qty = $("#product_qty"+$id).val();
@@ -292,6 +317,25 @@
             type: "POST",
             url: "<?php echo site_url('Cart/addSide');?>",
             data: "id="+$id+"&qty="+qty,
+            success: function(response){
+                $('#success-modal').modal('show');
+            }
+        });
+
+    }
+
+    function addMealToCart($id)
+    {
+
+        let qty = $("#product_qty"+$id).val();
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('Cart/addMeal');?>",
+            data: "id="+$id+"&qty="+qty,
+            success: function(response){
+                $('#success-modal').modal('show');
+            }
         });
 
     }

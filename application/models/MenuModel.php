@@ -9,6 +9,7 @@ class MenuModel extends CI_Model
         $this->pizza = 'Pizza';
         $this->sides = 'Sides';
         $this->toppings = 'Toppings';
+        $this->deals = 'Deals';
     }
 
     function setItemQuantity($quantity) {
@@ -60,7 +61,6 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
@@ -76,6 +76,18 @@ class MenuModel extends CI_Model
         }else{
             $result = '';
         }
+
+        // Return data
+        return !empty($result)?$result:false;
+    }
+
+    public function getAllDeals(){
+
+            $this->db->select('*');
+            $this->db->from($this->deals);
+
+            $query = $this->db->get();
+            $result = $query->result_array();
 
         // Return fetched data
         return !empty($result)?$result:false;
@@ -125,4 +137,20 @@ class MenuModel extends CI_Model
         // Return fetched data
         return !empty($result)?$result:false;
     }
+
+    public function getMeal($id){
+        $this->db->select('*');
+        $this->db->from($this->deals);
+        if($id){
+            $this->db->where('deal_id', $id);
+            $query = $this->db->get();
+            $result = $query->row_array();
+        }else{
+            $result = '';
+        }
+
+        // Return fetched data
+        return !empty($result)?$result:false;
+    }
+
 }
