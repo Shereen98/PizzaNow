@@ -19,8 +19,6 @@ class Checkout extends CI_Controller
         $data['delivery_time'] = $this->getDeliveryTime();
         $this->load->view('confirmationpage',$data);
 
-
-
     }
 
     public function addCustomer(){

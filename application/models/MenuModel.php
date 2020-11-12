@@ -12,26 +12,9 @@ class MenuModel extends CI_Model
         $this->deals = 'Deals';
     }
 
-    function setItemQuantity($quantity) {
-        $this->$itemQuantity = $quantity;
-    }
-
-    function getItemQuantity() {
-        return $this->itemQuantity;
-    }
-
-    public function incrementQty($qty){
-        if(!empty($qty)){
-            $quantity = $qty + 1;
-            $this->setItemQuantity($quantity);
-        }else{
-            $quantity = $this->itemQuantity+1;
-        }
-
-        return !empty($quantity)?$quantity:false;
-    }
-
+    //fetch all the pizza records from db
     public function getAllPizza($pizzaType){
+
         if(!empty($pizzaType)){
             $this->db->select('*');
             $this->db->from($this->pizza);
@@ -44,10 +27,10 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
+    //fetch all the side records from db
     public function getAllSides($sideType){
         if(!empty($sideType)){
             $this->db->select('*');
@@ -64,6 +47,7 @@ class MenuModel extends CI_Model
         return !empty($result)?$result:false;
     }
 
+    //fetch all the topping records from db
     public function getAllToppings($toppingType){
         if(!empty($toppingType)){
             $this->db->select('*');
@@ -77,10 +61,10 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return data
         return !empty($result)?$result:false;
     }
 
+    //fetch all the meal deal records from db
     public function getAllDeals(){
 
             $this->db->select('*');
@@ -89,13 +73,15 @@ class MenuModel extends CI_Model
             $query = $this->db->get();
             $result = $query->result_array();
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
+    // get single pizza record
     public function getPizza($id){
+
         $this->db->select('*');
         $this->db->from($this->pizza);
+
         if($id){
             $this->db->where('pizza_id', $id);
             $query = $this->db->get();
@@ -104,13 +90,15 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
+    // get single side record
     public function getSide($id){
+
         $this->db->select('*');
         $this->db->from($this->sides);
+
         if($id){
             $this->db->where('side_id', $id);
             $query = $this->db->get();
@@ -119,13 +107,15 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
+    // get single topping record
     public function getTopping($id){
+
         $this->db->select('*');
         $this->db->from($this->toppings);
+
         if($id){
             $this->db->where('topping_id', $id);
             $query = $this->db->get();
@@ -134,13 +124,15 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 
+    // get single meal deals record
     public function getMeal($id){
+
         $this->db->select('*');
         $this->db->from($this->deals);
+
         if($id){
             $this->db->where('deal_id', $id);
             $query = $this->db->get();
@@ -149,7 +141,6 @@ class MenuModel extends CI_Model
             $result = '';
         }
 
-        // Return fetched data
         return !empty($result)?$result:false;
     }
 

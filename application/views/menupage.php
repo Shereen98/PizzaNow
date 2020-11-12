@@ -31,9 +31,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                    echo "<li class='nav-item active-tab'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                    echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
+                    echo "<li class='nav-item active-tab'><a href='/PizzaNow/index.php/HomePage'>Home</a></li>";
+                    echo "<li class='nav-item active'><a href='/PizzaNow/index.php/HomePage/menu'>Menu</a></li>";
+                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/index.php/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
                 ?>
             </ul>
         </div>
@@ -122,7 +122,7 @@
                                             <p><?php echo substr($row["pizza_description"],0,45).'...'; ?></p>
                                             <p id="price">R - <?php echo 'Rs.'.$row["regular_pizza_price"]?> | M - <?php echo 'Rs.'.$row["medium_pizza_price"]?> | L - <?php echo 'Rs.'.$row["large_pizza_price"]?></p>
                                             <div class="text-center">
-                                                <a href="<?php echo base_url('MenuPage/customizePizza/'.$row['pizza_id']); ?>" class="btn menu-btn">Customize now</a>
+                                                <a href="<?php echo base_url('index.php/MenuPage/customizePizza/'.$row['pizza_id']); ?>" class="btn menu-btn">Customize now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                                 <p><?php echo substr($row["pizza_description"],0,45).'...'; ?></p>
                                                 <p id="price">R - <?php echo 'Rs.'.$row["regular_pizza_price"]?> | M - <?php echo 'Rs.'.$row["medium_pizza_price"]?> | L - <?php echo 'Rs.'.$row["large_pizza_price"]?></p>
                                                 <div class="text-center">
-                                                    <a href="<?php echo base_url('MenuPage/customizePizza/'.$row['pizza_id']); ?>" class="btn menu-btn">Customize now</a>
+                                                    <a href="<?php echo base_url('index.php/MenuPage/customizePizza/'.$row['pizza_id']); ?>" class="btn menu-btn">Customize now</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo site_url('Cart/addSide');?>",
+            url: "<?php echo base_url('index.php/Cart/addSide');?>",
             data: "id="+$id+"&qty="+qty,
             success: function(response){
                 $('#success-modal').modal('show');
@@ -331,7 +331,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo site_url('Cart/addMeal');?>",
+            url: "<?php echo base_url('index.php/Cart/addMeal');?>",
             data: "id="+$id+"&qty="+qty,
             success: function(response){
                 $('#success-modal').modal('show');

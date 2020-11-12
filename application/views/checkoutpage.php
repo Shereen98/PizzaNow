@@ -28,11 +28,11 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                    echo "<li class='nav-item'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                    echo "<li class='nav-item'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
+                    echo "<li class='nav-item'><a href='/PizzaNow/index.php/HomePage'>Home</a></li>";
+                    echo "<li class='nav-item'><a href='/PizzaNow/index.php/HomePage/menu'>Menu</a></li>";
                     echo "<li class='nav-item'><a href=''>About Us</a></li>";
                     echo "<li class='nav-item'><a href='#contact'>Contact</a></li>";
-                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
+                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/index.php/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
                 ?>
             </ul>
         </div>
@@ -120,12 +120,12 @@
                         </div>
                     </div>
                 </div>
-                <a type="button" href='/PizzaNow/Cart/' style="background-color: #ffce33;font-weight: bold!important;color: black;border-radius: 10px!important;" class="btn "><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Back to cart</a>
+                <a type="button" href='/PizzaNow/index.php/Cart/' style="background-color: #ffce33;font-weight: bold!important;color: black;border-radius: 10px!important;" class="btn "><span class="glyphicon glyphicon-arrow-left"></span> &nbsp; Back to cart</a>
             </div>
 
             <div class="col-sm-5">
                 <h3>Enter your contact information</h3><hr>
-                <form action="<?php echo site_url('Checkout/confirmOrder/');?>" method="post">
+                <form action="<?php echo base_url('index.php/Checkout/confirmOrder/');?>" method="post">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <label for="Name"><h5 style="font-weight: bold">Name*</h5></label>
@@ -181,7 +181,7 @@
 <footer class="navbar-static-bottom navbar-fixed-bottom ">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-        <p>© 2020 Copyright: <a href="https://mdbootstrap.com/"> pizzanow.com</a><p>
+        <p>© 2020 Copyright: <a href="https://pizzanow.com/"> pizzanow.com</a><p>
     </div>
 </footer>
 <!-- /Footer-->

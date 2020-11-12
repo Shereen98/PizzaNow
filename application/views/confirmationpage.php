@@ -19,9 +19,11 @@
     <div class="jumbotron text-center" style="background-color: maroon">
         <h2 style="color: #ffce33;font-family: 'Dancing Script';font-size: 40px">Thank you <?php echo $item['first_name'].' '.$item['last_name']; ?>!</h2>
         <p style="color: white;font-family: 'Proza Libre';font-size: 20px">Your order will be delivered to <span ><?php echo $item['street_no'].', '.$item['city']; ?></span>. The estimated delivery time is <span><?php echo $delivery_time; ?></span>.</p>
-        <a href="<?php echo base_url('Checkout/destroySession'); ?>" style="background-color: black;font-weight: bold!important;color: #ffce33;border-radius: 10px!important;" class="btn menu-btn">Go back to home</a>
+        <a href="<?php echo base_url('index.php/Checkout/destroySession'); ?>" style="background-color: black;font-weight: bold!important;color: #ffce33;border-radius: 10px!important;" class="btn menu-btn">Go back to home</a>
     </div>
-    <? }} ?>
+    <?php } }else{ ?>
+        <p>Sorry Something is wrong!</p>
+    <?php } ?>
 </div>
 
 </body>

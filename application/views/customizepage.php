@@ -30,9 +30,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                    echo "<li class='nav-item'><a href='/PizzaNow/HomePage'>Home</a></li>";
-                    echo "<li class='nav-item active'><a href='/PizzaNow/HomePage/menu'>Menu</a></li>";
-                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
+                    echo "<li class='nav-item'><a href='/PizzaNow/index.php/HomePage'>Home</a></li>";
+                    echo "<li class='nav-item active'><a href='/PizzaNow/index.php/HomePage/menu'>Menu</a></li>";
+                    echo "<li class='nav-item cta cta-colored'><a href='/PizzaNow/index.php/Cart/' class='nav-link'><span class='glyphicon glyphicon-shopping-cart'></span> &nbsp; Cart</a></li>";
                 ?>
             </ul>
         </div>
@@ -145,7 +145,7 @@
 
         <div class="col-md-5 col-md-pull-7">
             <div class="text-left">
-                <a type="button" href='/PizzaNow/HomePage/menu' class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                <a type="button" href='/PizzaNow/index.php/HomePage/menu' class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span></a>
             </div>
             <?php if(!empty($pizza)){ ?>
             <div class="thumbnail" id="model-thumbnail">
@@ -156,13 +156,11 @@
                     <h2 class="text-center">Rs.<input id="total_price" type="number" name="text" value="<?php echo $pizza["regular_pizza_price"]; ?>" readonly="true"></h2>
                     <br>
                     <div class="text-center">
-<!--                        <a href="" class="btn btn-danger less_qty"><span class='glyphicon glyphicon-minus'></span></a>-->
                         <button class="btn btn-danger decrement"  type="button" ><span class='glyphicon glyphicon-minus'></span></button>
                             <input id="product_qty" type="number" name="text" value="1" readonly="true">
                             <input id="unit_price" type="number" name="text" value="1" hidden="true">
                         <button class="btn btn-success increment"  type="button"><span class='glyphicon glyphicon-plus'></span></button>
-<!--                        <a href="" class="btn btn-success add_qty"><span class='glyphicon glyphicon-plus'></span></a>-->
-                        &nbsp;&nbsp;
+                        &nbsp;
                         <button class="btn menu-btn" onclick="addtocart(<?php echo $pizza['pizza_id']?>)" type="button">Add to Cart</button>
                     </div>
                 </div>
@@ -181,7 +179,7 @@
                 <h5>Successfully added to the cart!</h5>
             </div>
             <div class="modal-footer text-center">
-                <a href="/PizzaNow/HomePage/menu" type="button" style="background-color: maroon;color: white" class="btn btn-default" data-dismiss="modal">Close</a>
+                <a type="button" style="background-color: maroon;color: white" class="btn btn-default" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
@@ -191,7 +189,7 @@
 <footer class="navbar-static-bottom">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-        <p>© 2020 Copyright: <a href="https://mdbootstrap.com/"> pizzanow.com</a><p>
+        <p>© 2020 Copyright: <a href="https://pizzanow.com/"> pizzanow.com</a><p>
     </div>
 </footer>
 <!-- /Footer-->
@@ -267,13 +265,12 @@
     {
 
         let qty = $("#product_qty").val();
-        // let price = $('#total_price').val();
         let price = $("#unit_price").val();
         let sub_total = $('#total_price').val();
 
         $.ajax({
             type: "POST",
-            url: "<?php echo site_url('Cart/addPizza');?>",
+            url: "<?php echo base_url('index.php/Cart/addPizza');?>",
             data: "id="+$id+"&qty="+qty+"&price="+price+"&sub_total="+sub_total,
             success: function(response){
                 $('#success-modal').modal('show');

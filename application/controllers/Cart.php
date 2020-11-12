@@ -63,9 +63,6 @@ class Cart extends CI_Controller
 
             $pizza_cart = array($item);
             $this->session->set_userdata(self::PIZZA_SESSION, serialize($pizza_cart));
-
-
-        redirect('menupage');
     }
 
 
@@ -140,7 +137,7 @@ class Cart extends CI_Controller
         $side_cart = array_values(unserialize($this->session->userdata(self::SIDE_SESSION)));
         unset($side_cart[$session_index]);
         $this->session->set_userdata(self::SIDE_SESSION, serialize($side_cart));
-        redirect('cart');
+        redirect('index.php/cart');
     }
 
     public function removePizza($id){
@@ -148,7 +145,7 @@ class Cart extends CI_Controller
         $pizza_cart = array_values(unserialize($this->session->userdata(self::PIZZA_SESSION)));
         unset($pizza_cart[$session_index]);
         $this->session->set_userdata(self::PIZZA_SESSION, serialize($pizza_cart));
-        redirect('cart');
+        redirect('index.php/cart');
     }
 
     public function removeMeal($id){
@@ -156,7 +153,7 @@ class Cart extends CI_Controller
         $meal_cart = array_values(unserialize($this->session->userdata(self::MEAL_SESSION)));
         unset($meal_cart[$session_index]);
         $this->session->set_userdata(self::MEAL_SESSION, serialize($meal_cart));
-        redirect('cart');
+        redirect('index.php/cart');
     }
 
     private function isItemAvailable($id,$session_name)
@@ -223,7 +220,7 @@ class Cart extends CI_Controller
 
             }
         }
-        redirect('cart');
+        redirect('index.php/cart');
     }
 
     public function updateSideCart($id,$updateType){
@@ -248,7 +245,7 @@ class Cart extends CI_Controller
                 }
             }
         }
-        redirect('cart');
+        redirect('index.php/cart');
     }
 
     public function updateMealCart($id,$updateType){
@@ -273,6 +270,6 @@ class Cart extends CI_Controller
                 }
             }
         }
-        redirect('cart');
+        redirect('index.php/cart');
     }
 }

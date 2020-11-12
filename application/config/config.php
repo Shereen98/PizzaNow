@@ -23,13 +23,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "https://w1698420.users.ecs.westminster.ac.uk/PizzaNow/";
+$config['base_url'] = 'https://w1698420.users.ecs.westminster.ac.uk/PizzaNow/';
 
 /*
 |--------------------------------------------------------------------------
 | Index File
 |--------------------------------------------------------------------------
-|
+|z
 | Typically this will be your index.php file, unless you've renamed it to
 | something else. If you are using mod_rewrite to remove the page set this
 | variable so that it is blank.
