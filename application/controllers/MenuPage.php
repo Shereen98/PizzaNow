@@ -4,12 +4,14 @@
 class MenuPage extends CI_Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
-       $this->load->view('menupage');
+        $this->load->view('menupage');
     }
 
-    public function customizePizza($id){
+    public function customizePizza($id)
+    {
 
         $data = array();
         $data['pizza'] = $this->menu->getPizza($id);
@@ -18,6 +20,6 @@ class MenuPage extends CI_Controller
         $data['mealDeals'] = $this->menu->getAllDeals();
         $data['itemQuantity'] = 1;
 
-       $this->load->view('customizepage',$data);
+        $this->load->view('customizepage', $data);
     }
 }

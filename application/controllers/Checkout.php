@@ -11,17 +11,21 @@ class Checkout extends CI_Controller
         $this->load->view('checkoutpage');
     }
 
-    public function confirmOrder(){
+    //pass customer details and delivery time calculated to the view
+    public function confirmOrder()
+    {
 
         $this->addCustomer();
 
         $data['customer'] = $this->getCustomer(self::CUSTOMER_SESSION);
         $data['delivery_time'] = $this->getDeliveryTime();
-        $this->load->view('confirmationpage',$data);
+        $this->load->view('confirmationpage', $data);
 
     }
 
-    public function addCustomer(){
+    //add customer details to the session
+    public function addCustomer()
+    {
 
         $customer = array(
             'first_name' => $this->input->post('first_name'),
@@ -35,24 +39,30 @@ class Checkout extends CI_Controller
         $this->session->set_userdata(self::CUSTOMER_SESSION, serialize($customer_details));
     }
 
-    public function getDeliveryTime(){
+    //calculate the delivery time
+    public function getDeliveryTime()
+    {
         date_default_timezone_set('Asia/Colombo');
         $currentTime = time();
-        $formatTime = date(" H:i:s",$currentTime);
+        $formatTime = date(" H:i:s", $currentTime);
 
-        return date('H:i A',strtotime('+30 minutes',strtotime($formatTime)));
+        return date('H:i A', strtotime('+30 minutes', strtotime($formatTime)));
     }
 
-    public function getCustomer($session_name){
+    //get the customer session
+    public function getCustomer($session_name)
+    {
         $customer_session = '';
 
-        if($this->session->has_userdata($session_name)) {
+        if ($this->session->has_userdata($session_name)) {
             $customer_session = array_values(unserialize($this->session->userdata($session_name)));
         }
         return $customer_session;
     }
 
-    public function destroySession(){
+    //load home page and destroy session
+    public function destroySession()
+    {
         session_destroy();
 
         $this->load->view('homepage');

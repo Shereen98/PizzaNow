@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://w1698420.users.ecs.westminster.ac.uk/PizzaNow/';
-
 /*
 |--------------------------------------------------------------------------
 | Index File

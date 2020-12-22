@@ -20,13 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30620a-c027-4d49-a617-1bcd63dcda5e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/HomePage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/HomePage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/MenuPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/MenuPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/MenuModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/MenuModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/checkoutpage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkoutpage.php" afterDir="false" />
@@ -74,7 +73,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.PHP" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -109,7 +108,8 @@
       <workItem from="1605089103875" duration="12003000" />
       <workItem from="1605114232509" duration="7251000" />
       <workItem from="1605125582765" duration="185000" />
-      <workItem from="1605125772754" duration="7912000" />
+      <workItem from="1605125772754" duration="12931000" />
+      <workItem from="1608655986381" duration="91000" />
     </task>
     <servers />
   </component>
@@ -145,10 +145,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="659" y="455" key="NewPhpFileDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1605120629227" />
-    <state x="341" y="164" key="SettingsEditor" timestamp="1605151312858">
+    <state x="341" y="164" key="SettingsEditor" timestamp="1608656076366">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1605151312858" />
+    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1608656076366" />
     <state x="538" y="157" width="604" height="735" key="find.popup" timestamp="1605149878747">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -163,7 +163,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/views/customizepage.php</url>
-          <line>94</line>
+          <line>97</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
